@@ -119,7 +119,7 @@ public class MVCModelo {
 						double geometric_standard_deviation_travel_time = Double.parseDouble(nextline[6]);	
 						n++;
 						UBERTrip nuevo = new UBERTrip(sourceid, dstid, dow, mean_travel_time, standard_deviation_travel_time, geometric_mean_travel_time, geometric_standard_deviation_travel_time);
-						lista.enqueue(nuevo);
+						lista.add(nuevo);
 						//System.out.println(FVERDECLARO + TBLANCO + n + FF + FF);
 
 						nextline = reader.readNext();					
