@@ -123,7 +123,7 @@ public class MVCModelo {
 						nextline = reader.readNext();					
 				}
 				System.out.println("");
-				System.out.println(FVERDECLARO + TBLANCO + lista.size() + "." + FF + FF);
+				System.out.println(FVERDECLARO + TBLANCO + "La cantidad de viajes cargados fue: " + lista.size() + "." + FF + FF);
 				System.out.println("");
 				reader.close();
 				
