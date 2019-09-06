@@ -2,11 +2,6 @@ package model.logic;
 
 public class UBERTrip implements Comparable<UBERTrip>
 {
-	// Identificador único de la zona de origen de los viajes relacionados
-	package model.logic;
-
-	public class Viaje 
-	{
 		//Identificador único de la zona de origen de los viajes relacionados
 		public int sourceid;
 		
@@ -28,7 +23,7 @@ public class UBERTrip implements Comparable<UBERTrip>
 		//desviación estándar geométrica de los viajes relacionados
 		public double geometric_standard_deviation_travel_time;
 		
-		public Viaje(int pSourceid, int pDstid, int pMonth, double pMean_travel_time, double pStandard_deviation_travel_time, double pGeometric_mean_travel_time, double pGeometric_standard_deviation_travel_time )
+		public UBERTrip(int pSourceid, int pDstid, int pMonth, double pMean_travel_time, double pStandard_deviation_travel_time, double pGeometric_mean_travel_time, double pGeometric_standard_deviation_travel_time )
 		{
 			sourceid = pSourceid;
 			dstid = pDstid;
@@ -95,16 +90,11 @@ public class UBERTrip implements Comparable<UBERTrip>
 			this.geometric_standard_deviation_travel_time = geometric_standard_deviation_travel_time;
 		}
 		
-		
-		
-	}
 
 	@Override
 	public int compareTo(UBERTrip o) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
 	}
 
 }

@@ -47,6 +47,7 @@ public class MVCModelo {
 	public MVCModelo()
 	{
 		datos = new ArregloDinamico(7);
+		lista = new Array<UBERTrip>();
 	}
 	
 	/**
@@ -104,11 +105,10 @@ public class MVCModelo {
 				reader = new CSVReader(new FileReader("./data/bogota-cadastral-2018-2-All-HourlyAggregate.csv"));			
 				String[] nextline = reader.readNext();
 				nextline = reader.readNext();
-				int n = 0;
 				
 				//Debido a la memoria limitada de java solo guarda 3238053 viajes.
 				
-				while(nextline != null && n < 100)
+				while(nextline != null && lista.size() < 100)
 				{					
 						int    sourceid = Integer.parseInt(nextline[0]);
 						int    dstid = Integer.parseInt(nextline[1]);
@@ -117,15 +117,13 @@ public class MVCModelo {
 						double standard_deviation_travel_time = Double.parseDouble(nextline[4]);
 						double geometric_mean_travel_time = Double.parseDouble(nextline[5]);
 						double geometric_standard_deviation_travel_time = Double.parseDouble(nextline[6]);	
-						n++;
 						UBERTrip nuevo = new UBERTrip(sourceid, dstid, dow, mean_travel_time, standard_deviation_travel_time, geometric_mean_travel_time, geometric_standard_deviation_travel_time);
-						lista.enqueue(nuevo);
-						//System.out.println(FVERDECLARO + TBLANCO + n + FF + FF);
+						lista.add(nuevo);
 
 						nextline = reader.readNext();					
 				}
 				System.out.println("");
-				System.out.println(FVERDECLARO + TBLANCO + "La cantidad de viajes fueron: "+ n + "." + FF + FF);
+				System.out.println(FVERDECLARO + TBLANCO + lista.size() + "." + FF + FF);
 				System.out.println("");
 				reader.close();
 				
