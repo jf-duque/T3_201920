@@ -2,21 +2,15 @@ package model.logic;
 
 public class UBERTrip implements Comparable<UBERTrip>
 {
-<<<<<<< HEAD
+
 	//Identificador único de la zona de origen de los viajes relacionados
-	public int sourceid;
+		public int sourceid;
 
 	// Identificador único de la zona de destino de los viajes relacionados
-	public int dstid;
-=======
-		//Identificador único de la zona de origen de los viajes relacionados
-		public int sourceid;
-		
-		// Identificador único de la zona de destino de los viajes relacionados
 		public int dstid;
 		
 		//número del mes de los viajes relacionados
-		public int month;
+		public int hod;
 		
 		//tiempo promedio en segundos de los viajes relacionados
 		public double mean_travel_time;
@@ -30,43 +24,17 @@ public class UBERTrip implements Comparable<UBERTrip>
 		//desviación estándar geométrica de los viajes relacionados
 		public double geometric_standard_deviation_travel_time;
 		
-		public UBERTrip(int pSourceid, int pDstid, int pMonth, double pMean_travel_time, double pStandard_deviation_travel_time, double pGeometric_mean_travel_time, double pGeometric_standard_deviation_travel_time )
+		public UBERTrip(int pSourceid, int pDstid, int pHod, double pMean_travel_time, double pStandard_deviation_travel_time, double pGeometric_mean_travel_time, double pGeometric_standard_deviation_travel_time )
 		{
 			sourceid = pSourceid;
 			dstid = pDstid;
-			month=pMonth;
+			hod=pHod;
 			mean_travel_time = pMean_travel_time;
 			standard_deviation_travel_time = pStandard_deviation_travel_time;
 			geometric_mean_travel_time = pGeometric_mean_travel_time;
 			geometric_standard_deviation_travel_time = pGeometric_standard_deviation_travel_time;
 		}
->>>>>>> a843a9ec416a9af634c3e3e1f05baa49d78d677e
 
-	//número del mes de los viajes relacionados
-	public int month;
-
-	//tiempo promedio en segundos de los viajes relacionados
-	public double mean_travel_time;
-
-	//desviación estándar de los viajes relacionados
-	public double standard_deviation_travel_time;
-
-	//desviación estándar de los viajes relacionados
-	public double geometric_mean_travel_time;
-
-	//desviación estándar geométrica de los viajes relacionados
-	public double geometric_standard_deviation_travel_time;
-
-	public UBERTrip(int pSourceid, int pDstid, int pMonth, double pMean_travel_time, double pStandard_deviation_travel_time, double pGeometric_mean_travel_time, double pGeometric_standard_deviation_travel_time )
-	{
-		sourceid = pSourceid;
-		dstid = pDstid;
-		month=pMonth;
-		mean_travel_time = pMean_travel_time;
-		standard_deviation_travel_time = pStandard_deviation_travel_time;
-		geometric_mean_travel_time = pGeometric_mean_travel_time;
-		geometric_standard_deviation_travel_time = pGeometric_standard_deviation_travel_time;
-	}
 
 	public int getSourceid() {
 		return sourceid;
@@ -85,27 +53,19 @@ public class UBERTrip implements Comparable<UBERTrip>
 	}
 
 	public int getMonth() {
-		return month;
+		return hod;
 	}
 
 	public void setMonth(int month) {
-		this.month = month;
+		this.hod = month;
 	}
 
 	public double getMean_travel_time() {
 		return mean_travel_time;
 	}
-
-<<<<<<< HEAD
 	public void setMean_travel_time(double mean_travel_time) {
 		this.mean_travel_time = mean_travel_time;
 	}
-=======
-		public void setGeometric_standard_deviation_travel_time(double geometric_standard_deviation_travel_time) {
-			this.geometric_standard_deviation_travel_time = geometric_standard_deviation_travel_time;
-		}
-		
->>>>>>> a843a9ec416a9af634c3e3e1f05baa49d78d677e
 
 	public double getStandard_deviation_travel_time() {
 		return standard_deviation_travel_time;
@@ -123,7 +83,6 @@ public class UBERTrip implements Comparable<UBERTrip>
 		this.geometric_mean_travel_time = geometric_mean_travel_time;
 	}
 
-<<<<<<< HEAD
 	public double getGeometric_standard_deviation_travel_time() {
 		return geometric_standard_deviation_travel_time;
 	}
@@ -151,9 +110,6 @@ public class UBERTrip implements Comparable<UBERTrip>
 		else
 		return 1;
 	}
-
-=======
->>>>>>> a843a9ec416a9af634c3e3e1f05baa49d78d677e
 }
 
 

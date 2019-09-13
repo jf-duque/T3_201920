@@ -20,7 +20,7 @@ public class MVCModelo {
 	 */
 	private IArregloDinamico datos;
 	
-	private Array lista;
+	private Array<UBERTrip> lista;
 	
 	private static String TBLANCO="\u001b[1;37m";
 	 private static String TROJO="\u001b[1;31m";
@@ -112,17 +112,13 @@ public class MVCModelo {
 				{					
 						int    sourceid = Integer.parseInt(nextline[0]);
 						int    dstid = Integer.parseInt(nextline[1]);
-						int    dow = Integer.parseInt(nextline[2]);
+						int    hod = Integer.parseInt(nextline[2]);
 						double mean_travel_time = Double.parseDouble(nextline[3]);
 						double standard_deviation_travel_time = Double.parseDouble(nextline[4]);
 						double geometric_mean_travel_time = Double.parseDouble(nextline[5]);
 						double geometric_standard_deviation_travel_time = Double.parseDouble(nextline[6]);	
-						UBERTrip nuevo = new UBERTrip(sourceid, dstid, dow, mean_travel_time, standard_deviation_travel_time, geometric_mean_travel_time, geometric_standard_deviation_travel_time);
+						UBERTrip nuevo = new UBERTrip(sourceid, dstid, hod, mean_travel_time, standard_deviation_travel_time, geometric_mean_travel_time, geometric_standard_deviation_travel_time);
 						lista.add(nuevo);
-<<<<<<< HEAD
-						//System.out.println(FVERDECLARO + TBLANCO + n + FF + FF);
-=======
->>>>>>> a843a9ec416a9af634c3e3e1f05baa49d78d677e
 
 						nextline = reader.readNext();					
 				}
@@ -139,6 +135,37 @@ public class MVCModelo {
 				e.printStackTrace();
 			}
 		}
+	
+	private static boolean less(Comparable v, Comparable w) {
+        return v.compareTo(w) < 0;
+    }
+	
+	private static void exch(Array<UBERTrip> lista2, int i, int j) {
+        Object swap = lista2.get(i);
+        lista2.get(i) = lista2.get(j);
+        lista2.get(j) = swap;
+    }
+	
+	public void asd()
+	{
+		sort(lista);
+	}
+	
+	public  void sort(Array<UBERTrip> lista2) {
+        int n = lista2.size();
 
+        // 3x+1 increment sequence:  1, 4, 13, 40, 121, 364, 1093, ... 
+        int h = 1;
+        while (h < n/3) h = 3*h + 1; 
+
+        while (h >= 1) {
+            // h-sort the array
+            for (int i = h; i < n; i++) {
+                for (int j = i; j >= h && less(lista2.get(j), lista2.get(j-h)); j -= h) {
+                    exch(lista2, j, j-h);
+                }
+            }
+        }
 
 }
+	}

@@ -29,7 +29,7 @@ import java.util.NoSuchElementException;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Array<Item> implements Iterable<Item> {
+public class Array<Item> implements Iterable<Item>, Comparable<Item> {
     private Item[] a;         // array of items
     private int n;            // number of elements on bag
 
@@ -95,6 +95,33 @@ public class Array<Item> implements Iterable<Item> {
             return a[i++];
         }
     }
+    
+    public Item get(int p)
+    {
+    	Iterator iter = iterator();
+    	Item actual = null;
+    	int  i = 0;
+    	if(p == i)
+    	{
+    		return (Item) iter.next();
+    	}
+    	while(iter.hasNext())
+    	{
+    		if(p == i)
+    		{
+    			actual = (Item)iter.next();
+        		i++;
+    		}
+    		
+    	}
+    	return actual;
+    }
+
+	@Override
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
 
