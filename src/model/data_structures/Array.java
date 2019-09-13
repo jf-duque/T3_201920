@@ -1,3 +1,8 @@
+package model.data_structures;
+
+import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
+
 /******************************************************************************
  *  Compilation:  javac ResizingArrayBag.java
  *  Execution:    java ResizingArrayBag
@@ -7,10 +12,9 @@
  *
  ******************************************************************************/
 
-package model.data_structures;
-
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Objects;
 
 /**
  *  The {@code ResizingArrayBag} class represents a bag (or multiset) of 
@@ -29,7 +33,8 @@ import java.util.NoSuchElementException;
  *  @author Robert Sedgewick
  *  @author Kevin Wayne
  */
-public class Array<Item> implements Iterable<Item> {
+public class Array<Item> implements Iterable<Item>, Comparable<Item> {
+	protected transient int modCount = 0;
     private Item[] a;         // array of items
     private int n;            // number of elements on bag
 
@@ -74,6 +79,26 @@ public class Array<Item> implements Iterable<Item> {
         if (n == a.length) resize(2*a.length);    // double size of array if necessary
         a[n++] = item;                            // add item
     }
+    public Item remove(int index)     
+    {
+    	Objects.checkIndex(index, n);
+    	final Object[] es = a;
+    	
+    	@SuppressWarnings("unchecked") Item oldValue = (Item) es[index];
+    	fastRemove(es, index);
+    	
+    	return oldValue;
+    }
+    
+    
+    private void fastRemove(Object[] es, int index) 
+    {
+    	modCount++;
+    	final int newSize;
+    	if ((newSize = n - 1) > index)
+    		System.arraycopy(es, index + 1, es, index, newSize - index);
+    	es[n = newSize] = null;
+    }
 
 
     /**
@@ -87,14 +112,62 @@ public class Array<Item> implements Iterable<Item> {
     // an iterator, doesn't implement remove() since it's optional
     private class ArrayIterator implements Iterator<Item> {
         private int i = 0;
+        int cursor;
+        int lastRet=-1;
+        int  expectedModCount = modCount;
         public boolean hasNext()  { return i < n;                               }
-        public void remove()      { throw new UnsupportedOperationException();  }
-
-        public Item next() {
-            if (!hasNext()) throw new NoSuchElementException();
-            return a[i++];
+        public void remove() {
+        	if (lastRet < 0)
+        		throw new IllegalStateException();
+        	checkForComodification();
+        	
+        	try {
+        		Array.this.remove(lastRet);
+        		cursor = lastRet;
+        		lastRet = -1;
+        		expectedModCount = modCount;
+        	} catch (IndexOutOfBoundsException ex) {
+        		throw new ConcurrentModificationException();
+        	}
         }
+        
+        final void checkForComodification() {
+            if (modCount != expectedModCount)
+                throw new ConcurrentModificationException();
+        }
+        public Item next() {
+        	if (!hasNext()) throw new NoSuchElementException();
+        	return a[i++];
+        }
+}
+        
+    
+    public Item get(int p)
+    {
+    	Iterator iter = iterator();
+    	Item actual = null;
+    	int  i = 0;
+    	if(p == i)
+    	{
+    		return (Item) iter.next();
+    	}
+    	while(iter.hasNext())
+    	{
+    		if(p == i)
+    		{
+    			actual = (Item)iter.next();
+        		i++;
+    		}
+    		
+    	}
+    	return actual;
     }
+
+	@Override
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }
 
