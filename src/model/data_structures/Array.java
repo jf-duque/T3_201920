@@ -34,7 +34,10 @@ import java.util.Objects;
  *  @author Kevin Wayne
  */
 public class Array<Item> implements Iterable<Item>, Comparable<Item> {
+<<<<<<< HEAD
 	protected transient int modCount = 0;
+=======
+>>>>>>> 7dfe6146adb2549137fc7e9264be585fb12cfd76
     private Item[] a;         // array of items
     private int n;            // number of elements on bag
 
@@ -162,6 +165,33 @@ public class Array<Item> implements Iterable<Item>, Comparable<Item> {
     	}
     	return actual;
     }
+    
+    public Item get(int p)
+    {
+    	Iterator iter = iterator();
+    	Item actual = null;
+    	int  i = 0;
+    	if(p == i)
+    	{
+    		return (Item) iter.next();
+    	}
+    	while(iter.hasNext())
+    	{
+    		if(p == i)
+    		{
+    			actual = (Item)iter.next();
+        		i++;
+    		}
+    		
+    	}
+    	return actual;
+    }
+
+	@Override
+	public int compareTo(Item o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 	@Override
 	public int compareTo(Item o) {
